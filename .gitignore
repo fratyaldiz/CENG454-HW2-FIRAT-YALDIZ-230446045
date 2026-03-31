@@ -1,0 +1,11 @@
+
+SkyHigh/[Ll]ibrary/
+SkyHigh/[Tt]emp/
+SkyHigh/[Bb]uild/
+SkyHigh/[Oo]bj/
+SkyHigh/[Ll]ogs/
+SkyHigh/UserSettings/
+.vs/
+.DS_Store
+Thumbs.db
+Desktop.ini
