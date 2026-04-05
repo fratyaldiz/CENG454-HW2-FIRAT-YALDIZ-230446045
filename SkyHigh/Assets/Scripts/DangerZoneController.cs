@@ -6,7 +6,7 @@ public class DangerZoneController : MonoBehaviour
 {
     [SerializeField] private FlightExamManager examManager;
     //[SerializeField] private MissileLauncher missileLauncher;
-    [SerializeField] private float missileDelay = 5f;
+    [SerializeField] private float missileDelay = 5f;   //delay of missile
     
     private Coroutine activeCountdown;
 
@@ -25,11 +25,11 @@ public class DangerZoneController : MonoBehaviour
 
             // TODO: start the delayed missile launch countdown
             // we start 5 second timer for missile
-            activeCountdown = StartCoroutine(MissileTimer(collision.transform));
+            activeCountdown = StartCoroutine(MissileTimer(collision.transform));    //countdown begin
         }
     }
 
-    private void OnTriggerExit(Collider collision)
+    private void OnTriggerExit(Collider collision)  //Starts when the aircraft enter of area
     {
         // TODO: confirm the Player tag
         

@@ -27,14 +27,14 @@ public class FlightExamManager : MonoBehaviour
         if (statusText != null)
         {
             statusText.gameObject.SetActive(true);
-            statusText.text = "Entered a Dangerous Zone!";
+            statusText.text = "Entered a Dangerous Zone!";  //text for screen
         }
         
         // danger is start
         threatCleared = false;
     }
 
-    public void ExitDangerZone()
+    public void ExitDangerZone()    //when the player leave the dangerous area
     {
         // TODO: mark the threat as cleared and refresh the HUD
         // player escape from danger. we hide text again.
