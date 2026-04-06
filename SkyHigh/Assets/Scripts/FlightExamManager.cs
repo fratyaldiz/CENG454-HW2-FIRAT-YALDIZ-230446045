@@ -8,13 +8,14 @@ public class FlightExamManager : MonoBehaviour
     [SerializeField] private TMP_Text missionText;
     
     private bool hasTakenOff = false;
+    // TODO (Task 3-I): store whether the threat was cleared
     private bool threatCleared = false;
     private bool missionComplete = false;
 
     private void Start()
     {
-        // game start, we hide warning text
-        if (statusText != null)
+        //  we hide warning text
+        if (statusText!= null)
         {
             statusText.gameObject.SetActive(false);
         }
@@ -23,11 +24,11 @@ public class FlightExamManager : MonoBehaviour
     public void EnterDangerZone()
     {
         // TODO: update the mission state and HUD
-        // player go inside danger place. we show red text
-        if (statusText != null)
+        // player go inside danger place and  we show red text
+        if (statusText!= null)
         {
             statusText.gameObject.SetActive(true);
-            statusText.text = "Entered a Dangerous Zone!";  //text for screen
+            statusText.text = "Entered a Dangerous Zone! ";  //text for screen
         }
         
         // danger is start
@@ -38,11 +39,26 @@ public class FlightExamManager : MonoBehaviour
     {
         // TODO: mark the threat as cleared and refresh the HUD
         // player escape from danger. we hide text again.
-        if (statusText != null)
+        if (statusText !=null)
         {
-            statusText.gameObject.SetActive(false);
+            statusText.gameObject.SetActive(false );
         }
         
-        threatCleared = true;
+        threatCleared= true;
+    }
+
+    // TODO (Task 3-J): handle failure, reset, or damage state when the missile reaches the aircraft
+    public void PlayerHitByMissile()
+    {
+        // player is bom
+        threatCleared =false; 
+        
+        // TODO (Task 3-K): update the HUD so the player understands whether escape or landing is now allowed
+        // update text
+        if (statusText!= null)
+        {
+            statusText.gameObject.SetActive(true);
+            statusText.text = "Missile Hit. Try Again ";
+        }
     }
 }
