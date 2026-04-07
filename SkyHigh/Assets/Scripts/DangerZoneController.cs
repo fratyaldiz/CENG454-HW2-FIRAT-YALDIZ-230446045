@@ -1,4 +1,3 @@
-// DangerZoneController.cs
 using UnityEngine;
 using System.Collections; // i add this because timer need this
 
@@ -7,6 +6,9 @@ public class DangerZoneController : MonoBehaviour
     [SerializeField] private FlightExamManager examManager;
     [SerializeField] private MissileLauncher missileLauncher;
     [SerializeField] private float missileDelay = 5f;   //delay of missile
+
+    [SerializeField] private AudioSource warningAudioSource; 
+    [SerializeField] private AudioClip warningClip;
     
     private Coroutine activeCountdown;
 
@@ -23,9 +25,18 @@ public class DangerZoneController : MonoBehaviour
                 examManager.EnterDangerZone();
             }
 
+            // Add void
+            if (warningAudioSource != null && warningClip != null)
+            {
+                warningAudioSource.PlayOneShot(warningClip);
+            }
+
             // TODO: start the delayed missile launch countdown
             // we start 5 second timer for missile
-            activeCountdown = StartCoroutine(MissileTimer( collision.transform));    //countdown begin
+            if (activeCountdown ==null)
+            {
+                activeCountdown= StartCoroutine(MissileTimer( collision.transform));    //countdown begin
+            }
         }
     }
 
@@ -33,7 +44,7 @@ public class DangerZoneController : MonoBehaviour
     {
         // TODO: confirm the Player tag
         
-        if (collision.CompareTag("Player" )) // we check player escape?
+        if (collision.CompareTag("Player")) // we check player escape?
         {
             // TODO: cancel any pending launch countdown
             // timer stop
@@ -47,7 +58,7 @@ public class DangerZoneController : MonoBehaviour
             // manager hide red text
             if (examManager!= null)
             {
-                examManager.ExitDangerZone();
+                examManager.ExitDangerZone ();
             }
 
             // TODO: missile is destroy now
@@ -69,5 +80,7 @@ public class DangerZoneController : MonoBehaviour
         {
             missileLauncher.Launch(playerTransform);
         }
+
+        activeCountdown = null;
     }
 }

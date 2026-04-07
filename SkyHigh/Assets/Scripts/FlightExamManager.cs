@@ -1,4 +1,3 @@
-// FlightExamManager.cs
 using UnityEngine;
 using TMPro;
 
@@ -6,19 +5,28 @@ public class FlightExamManager : MonoBehaviour
 {
     [SerializeField] private TMP_Text statusText;
     [SerializeField] private TMP_Text missionText;
+
+    [SerializeField] private AudioSource hitAudioSource;
+    [SerializeField] private AudioClip explosionClip ;
     
     public bool hasTakenOff = false;
     public bool enteredDangerZone = false;
     // TODO (Task 3-I): store whether the threat was cleared
     public bool threatCleared = false;
-    public bool missionComplete = false;
+    public bool missionComplete =false;
 
     private void Start()
     {
-        //  we hide warning text
+        // we hide warning text
         if (statusText!= null)
         {
             statusText.gameObject.SetActive(false);
+        }
+
+        // we hide mission text at start
+        if (missionText != null)
+        {
+            missionText.gameObject.SetActive(false);
         }
     }
 
@@ -40,10 +48,11 @@ public class FlightExamManager : MonoBehaviour
     public void ExitDangerZone()    //when the player leave the dangerous are
     {
         // TODO: mark the threat as cleared and refresh the HUD
-        // player escape from danger. we hide text again.
+        // player escape from danger. 
         if (statusText !=null)
         {
             statusText.gameObject.SetActive(false );
+            
         }
         
         threatCleared= true ;
@@ -54,6 +63,10 @@ public class FlightExamManager : MonoBehaviour
     {
         // player is bom
         threatCleared =false; 
+        missionComplete = false;
+
+        //Add void
+        if (hitAudioSource !=null && explosionClip!= null) hitAudioSource.PlayOneShot(explosionClip);
         
         // TODO (Task 3-K): update the HUD so the player understands whether escape or landing is now allowed
         // update text
@@ -61,6 +74,37 @@ public class FlightExamManager : MonoBehaviour
         {
             statusText.gameObject.SetActive(true );
             statusText.text = "Missile Hit. Try Again ";
+        }
+
+        if (missionText !=null)
+        {
+            missionText.gameObject.SetActive(false);
+        }
+    }
+
+    public bool CanCompleteMission()
+    {
+        return enteredDangerZone && threatCleared && !missionComplete;
+    }
+
+    public void CompleteMission()
+    {
+        if (!CanCompleteMission())
+        {
+            return;
+        }
+
+        missionComplete = true;
+
+        if (statusText != null)
+        {
+            statusText.gameObject.SetActive(false);
+        }
+
+        if (missionText != null)
+        {
+            missionText.gameObject.SetActive(true);
+            missionText.text = "MISSION COMPLETE";
         }
     }
 }

@@ -60,7 +60,7 @@ public class FlightController : MonoBehaviour
 
         }
         //Rotate around Z axis based on Q or E key
-        transform.Rotate(Vector3.forward* rollValue * rollSpeed *Time.deltaTime);
+        transform.Rotate(Vector3.forward* rollValue * rollSpeed*Time.deltaTime);
 
 
     }

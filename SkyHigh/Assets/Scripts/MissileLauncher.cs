@@ -1,4 +1,3 @@
-// MissileLauncher.cs
 // CENG 454 - HW2 Midterm: Sky-High Prototype II
 // Author: FIRAT YALDIZ | Student ID: 230446045
 using UnityEngine;
@@ -41,6 +40,7 @@ public class MissileLauncher : MonoBehaviour
         if (activeMissile!= null)
         {
             Destroy(activeMissile);
+            activeMissile = null;
         }
     }
 }

@@ -35,7 +35,7 @@ public class MissileHoming : MonoBehaviour
     private void OnTriggerEnter( Collider other)
     {
 
-        if (other.CompareTag("Player "))
+        if (other.CompareTag("Player"))
         {
             Debug.Log("BOOM! Player hit by missile!");
             // destroy this missile
