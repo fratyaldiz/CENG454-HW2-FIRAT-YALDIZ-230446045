@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\DangerZoneController.cs" />
+    <Compile Include="Assets\Scripts\LandingAreaTrigger.cs" />
     <Compile Include="Assets\Scripts\MissileLauncher.cs" />
     <Compile Include="Assets\Scripts\AircraftThreatHandler.cs" />
     <Compile Include="Assets\Scripts\MissileHoming.cs" />

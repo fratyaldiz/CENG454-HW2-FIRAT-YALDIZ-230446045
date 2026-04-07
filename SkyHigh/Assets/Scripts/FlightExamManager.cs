@@ -7,10 +7,11 @@ public class FlightExamManager : MonoBehaviour
     [SerializeField] private TMP_Text statusText;
     [SerializeField] private TMP_Text missionText;
     
-    private bool hasTakenOff = false;
+    public bool hasTakenOff = false;
+    public bool enteredDangerZone = false;
     // TODO (Task 3-I): store whether the threat was cleared
-    private bool threatCleared = false;
-    private bool missionComplete = false;
+    public bool threatCleared = false;
+    public bool missionComplete = false;
 
     private void Start()
     {
@@ -32,10 +33,11 @@ public class FlightExamManager : MonoBehaviour
         }
         
         // danger is start
-        threatCleared = false;
+        threatCleared =false;
+        enteredDangerZone = true;
     }
 
-    public void ExitDangerZone()    //when the player leave the dangerous area
+    public void ExitDangerZone()    //when the player leave the dangerous are
     {
         // TODO: mark the threat as cleared and refresh the HUD
         // player escape from danger. we hide text again.
@@ -44,7 +46,7 @@ public class FlightExamManager : MonoBehaviour
             statusText.gameObject.SetActive(false );
         }
         
-        threatCleared= true;
+        threatCleared= true ;
     }
 
     // TODO (Task 3-J): handle failure, reset, or damage state when the missile reaches the aircraft
@@ -57,7 +59,7 @@ public class FlightExamManager : MonoBehaviour
         // update text
         if (statusText!= null)
         {
-            statusText.gameObject.SetActive(true);
+            statusText.gameObject.SetActive(true );
             statusText.text = "Missile Hit. Try Again ";
         }
     }
